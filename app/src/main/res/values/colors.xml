@@ -3,8 +3,8 @@
     <color name="colorPrimary">#64b5f6</color>
     <color name="colorPrimaryDark">#2286c3</color>
     <color name="colorAccent">#9be7ff</color>
-    <color name="textColorPrimary">#fffde7</color>
-    <color name="toolbarIconColor">@color/textColorPrimary</color>
+    <color name="textColorOnPrimary">#fffde7</color>
+    <color name="toolbarIconColor">@color/textColorOnPrimary</color>
     <color name="loginPageBackgroundColor">#FFFFFF</color>
     <color name="productGridBackgroundColor">#FFFFFF</color>
     <color name="colorControlActivated">#FBB8AC</color>

@@ -20,3 +20,7 @@ fun EditText.addSimpleTextChangedListener(listener: (String) -> Unit) {
 
     })
 }
+
+fun EditText.hideError() {
+    this.error = null
+}

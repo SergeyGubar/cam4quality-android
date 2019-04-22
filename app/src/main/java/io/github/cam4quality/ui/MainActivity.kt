@@ -1,9 +1,10 @@
-package io.github.cam4quality
+package io.github.cam4quality.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import io.github.cam4quality.R
 
-class LoginActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
