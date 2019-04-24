@@ -19,7 +19,7 @@ class SharedPrefHelper(private val context: Context) {
 
     fun getToken() = getString(TOKEN_KEY).also { Timber.d("getToken: result = [$it]") }
 
-    fun saveToken(token: String) =
+    fun saveToken(token: String?) =
         putString(TOKEN_KEY, token).also { Timber.d("saveToken: token = [$token]") }
 
     fun getLogin() = getString(LOGIN_KEY).also { Timber.d("getToken: result = [$it]") }
@@ -38,7 +38,7 @@ class SharedPrefHelper(private val context: Context) {
     private fun putBoolean(key: String, value: Boolean) =
         context.defaultSharedPreferences.edit().putBoolean(key, value).apply()
 
-    private fun putString(key: String, value: String) =
+    private fun putString(key: String, value: String?) =
         context.defaultSharedPreferences.edit().putString(key, value).apply()
 
 }

@@ -10,14 +10,18 @@ import io.github.cam4quality.utility.extension.addSimpleTextChangedListener
 import io.github.cam4quality.utility.extension.bind
 import io.github.cam4quality.utility.extension.hideError
 import io.github.cam4quality.utility.extension.input
+import io.github.cam4quality.utility.helper.SharedPrefHelper
 import io.github.cam4quality.utility.validator.CredentialsValidator
+import io.reactivex.rxkotlin.subscribeBy
 import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class LoginActivity : BaseActivity() {
 
     private val loginRepository: LoginRepository by inject()
-
+    private val prefHelper: SharedPrefHelper by inject()
     private val nextButton by bind<Button>(R.id.login_next_button)
     private val emailEditText by bind<EditText>(R.id.login_email_edit_text)
     private val passwordEditText by bind<EditText>(R.id.login_password_edit_text)
@@ -29,7 +33,11 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun setupListeners() {
-        nextButton.setOnClickListener { validateInput { startActivity(intentFor<MainActivity>()); finish() } }
+        nextButton.setOnClickListener {
+            validateInput {
+                login(emailEditText.input, passwordEditText.input)
+            }
+        }
         emailEditText.addSimpleTextChangedListener { emailEditText.hideError() }
         passwordEditText.addSimpleTextChangedListener { passwordEditText.hideError() }
     }
@@ -41,5 +49,35 @@ class LoginActivity : BaseActivity() {
         if (!isPasswordValid) passwordEditText.error = getString(R.string.error_password)
         if (!isEmailValid || !isPasswordValid) return
         onValid()
+    }
+
+    private fun login(email: String, password: String) {
+        Timber.d("login: email = [$email], password = [$password]")
+        compositeDisposable.add(
+            loginRepository.login(email, password)
+                .subscribeBy(
+                    onError = {
+                        Timber.w("Login failed ${it.localizedMessage}")
+                        toast("Login failed!")
+                    },
+                    onSuccess = { result ->
+                        result.fold({ loginResponse ->
+                            Timber.d("Login success $loginResponse")
+                            // Security actually cries here, but i've got no time to implement better mechanism
+                            with(prefHelper) {
+                                saveLogin(email)
+                                savePassword(password)
+                                saveToken(loginResponse?.token)
+                            }.also {
+                                startActivity(intentFor<MainActivity>()); finish()
+                            }
+
+                        }, { err ->
+                            Timber.w("Login failed ${err.localizedMessage}")
+                            toast("Login failed!")
+                        })
+                    }
+                )
+        )
     }
 }

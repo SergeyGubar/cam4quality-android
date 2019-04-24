@@ -8,6 +8,6 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface LoginApi {
-    @POST("login")
+    @POST("/api/User/login")
     fun login(@Body loginRequestModel: LoginRequestModel): Single<Response<LoginResponseModel>>
 }

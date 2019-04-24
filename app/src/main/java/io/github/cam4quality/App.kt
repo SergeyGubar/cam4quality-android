@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import io.github.cam4quality.network.api.LoginApi
 import io.github.cam4quality.network.constant.NetworkConstants
 import io.github.cam4quality.network.repository.LoginRepository
+import io.github.cam4quality.utility.helper.SharedPrefHelper
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -39,6 +40,10 @@ class App : Application() {
         single { LoginRepository(get()) }
     }
 
+    private val utilsModule = module {
+        single { SharedPrefHelper(get()) }
+    }
+
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {
@@ -47,7 +52,8 @@ class App : Application() {
         startKoin {
             modules(
                 networkModule,
-                loginModule
+                loginModule,
+                utilsModule
             )
             androidContext(this@App)
         }
