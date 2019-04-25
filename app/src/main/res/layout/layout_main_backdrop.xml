@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/featured_button"
+        style="@style/Widget.Cam4Quality.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/factories" />
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.Cam4Quality.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/details" />
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.Cam4Quality.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/users" />
+
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.Cam4Quality.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quality_params" />
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.Cam4Quality.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quality_param_deviations" />
+
+    <View
+        android:layout_width="56dp"
+        android:layout_height="1dp"
+        android:layout_margin="16dp"
+        android:background="?android:attr/textColorPrimary" />
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.Cam4Quality.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings" />
+
+</merge>

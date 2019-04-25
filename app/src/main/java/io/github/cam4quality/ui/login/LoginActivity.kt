@@ -1,4 +1,4 @@
-package io.github.cam4quality.ui
+package io.github.cam4quality.ui.login
 
 import android.os.Bundle
 import android.widget.Button
@@ -6,6 +6,7 @@ import android.widget.EditText
 import io.github.cam4quality.BaseActivity
 import io.github.cam4quality.R
 import io.github.cam4quality.network.repository.LoginRepository
+import io.github.cam4quality.ui.main.MainActivity
 import io.github.cam4quality.utility.extension.addSimpleTextChangedListener
 import io.github.cam4quality.utility.extension.bind
 import io.github.cam4quality.utility.extension.hideError

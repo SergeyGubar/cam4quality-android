@@ -6,5 +6,11 @@
     <string name="cancel">Cancel</string>
     <string name="error_email">Enter valid email</string>
     <string name="error_password">Enter valid password</string>
+    <string name="settings">Settings</string>
+    <string name="factories">Factories</string>
+    <string name="details">Details</string>
+    <string name="users">Users</string>
+    <string name="quality_params">Quality Params</string>
+    <string name="quality_param_deviations">Quality Deviations</string>
 
 </resources>
