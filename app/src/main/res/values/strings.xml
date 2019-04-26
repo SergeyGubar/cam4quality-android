@@ -17,5 +17,10 @@
     <string name="factory_type">Factory Type</string>
     <string name="factory_address">Factory Address</string>
     <string name="save">Save</string>
+    <string name="error_adding_factory">Error adding factory!</string>
+    <string name="no_factory">No Factory</string>
+    <string name="hint_username">Username</string>
+    <string name="add_user">Add User</string>
+    <string name="error_loading_factories_data">Error loading factories data!</string>
 
 </resources>

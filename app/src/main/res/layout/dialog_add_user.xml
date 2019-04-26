@@ -7,7 +7,7 @@
     android:background="@android:color/white">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/add_factory_app_bar"
+        android:id="@+id/add_user_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,18 +15,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/add_factory_toolbar"
+            android:id="@+id/add_user_toolbar"
             style="@style/Widget.Shrine.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:navigationIcon="@drawable/ic_close_white_24dp"
-            app:title="@string/add_factory"
+            app:title="@string/add_user"
             app:titleTextColor="@color/textColorOnPrimary" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/add_factory_name_input_layout"
+        android:id="@+id/add_user_username_input_layout"
         style="@style/Widget.Cam4Quality.TextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -35,19 +35,19 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_factory_app_bar">
+        app:layout_constraintTop_toBottomOf="@+id/add_user_app_bar">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/add_factory_name_edit_text"
+            android:id="@+id/add_user_username_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/factory_name"
+            android:hint="@string/hint_username"
             android:textColor="@android:color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/add_factory_type_input_layout"
+        android:id="@+id/add_user_email_input_layout"
         style="@style/Widget.Cam4Quality.TextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -57,18 +57,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_factory_name_input_layout">
+        app:layout_constraintTop_toBottomOf="@+id/add_user_username_input_layout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/add_factory_type_edit_text"
+            android:id="@+id/add_user_email_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/factory_type"
+            android:hint="@string/hint_email"
             android:textColor="@android:color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/add_factory_address_input_layout"
+        android:id="@+id/add_user_password_inputLayout"
         style="@style/Widget.Cam4Quality.TextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -78,15 +78,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_factory_type_input_layout">
+        app:layout_constraintTop_toBottomOf="@+id/add_user_email_input_layout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/add_factory_address_edit_text"
+            android:id="@+id/add_user_password_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/factory_address"
+            android:hint="@string/hint_password"
+            android:inputType="textPassword"
             android:textColor="@android:color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
+    <com.jaredrummler.materialspinner.MaterialSpinner
+        android:id="@+id/add_user_factories_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_user_password_inputLayout"
+        app:ms_text_color="@android:color/black" />
 </androidx.constraintlayout.widget.ConstraintLayout>

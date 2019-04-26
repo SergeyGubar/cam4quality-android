@@ -17,9 +17,9 @@ fun <T> Single<T>.workOnBackground(): Single<T> {
     return this.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io())
 }
 
-fun <T> Single<Response<T>>.mapToResult(): Single<Result<T?>> {
+fun <T> Single<Response<T>>.mapToResult(): Single<Result<T>> {
     return this.map { response ->
-        if (response.isSuccessful) Result.success(response.body()) else Result.failure(
+        if (response.isSuccessful) Result.success(response.body()!!) else Result.failure(
             IllegalStateException(
                 response.code().toString().plus(" ---> ").plus(response.message())
             )

@@ -37,12 +37,11 @@ class FactoriesFragment : BaseFragment() {
         setupRecycler()
         setupListeners()
         login()
-        loadFactoriesData()
     }
 
     private fun setupListeners() {
         fab.setOnClickListener {
-            AddFactoryDialog().show(notNullFragmentManager, null)
+            AddFactoryDialogFragment.newInstance(::loadFactoriesData).show(notNullFragmentManager, null)
         }
     }
 
@@ -60,11 +59,13 @@ class FactoriesFragment : BaseFragment() {
         val password = prefHelper.getPassword()
         val loginObservable = loginRepository.login(login, password)
         compositeDisposable.addAll(
-            loginObservable.addLoggingSubscriber(),
             loginObservable.subscribeBy(
                 onSuccess = { response ->
                     response.onSuccess { result ->
-                        result?.let { prefHelper.saveToken(it.token) }
+                        result.let {
+                            prefHelper.saveToken(it.token)
+                            loadFactoriesData()
+                        }
                     }
                 },
                 onError = { err -> toast("error loading factories ${err.localizedMessage}") }
@@ -75,7 +76,6 @@ class FactoriesFragment : BaseFragment() {
     private fun loadFactoriesData() {
         val factoriesObservable = factoriesRepository.getAllFactories()
         compositeDisposable.addAll(
-            factoriesObservable.addLoggingSubscriber(),
             factoriesObservable
                 .subscribeBy(
                     onSuccess = { response ->

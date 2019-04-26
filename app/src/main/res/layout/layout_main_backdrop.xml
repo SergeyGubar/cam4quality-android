@@ -2,7 +2,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/featured_button"
+        android:id="@+id/main_factories_button"
         style="@style/Widget.Cam4Quality.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,6 +15,7 @@
         android:text="@string/details" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/main_users_button"
         style="@style/Widget.Cam4Quality.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -4,9 +4,11 @@ import android.app.Application
 import com.google.gson.GsonBuilder
 import io.github.cam4quality.network.api.FactoriesApi
 import io.github.cam4quality.network.api.LoginApi
+import io.github.cam4quality.network.api.UsersApi
 import io.github.cam4quality.network.constant.NetworkConstants
 import io.github.cam4quality.network.repository.FactoriesRepository
 import io.github.cam4quality.network.repository.LoginRepository
+import io.github.cam4quality.network.repository.UsersRepository
 import io.github.cam4quality.utility.helper.SharedPrefHelper
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -51,11 +53,17 @@ class App : Application() {
         single { SharedPrefHelper(get()) }
     }
 
+    private val usersModule = module {
+        single { get<Retrofit>().create(UsersApi::class.java) }
+        factory { UsersRepository(get(), get()) }
+    }
+
     private val modules = listOf(
         networkModule,
         factoriesModule,
         loginModule,
-        utilsModule
+        utilsModule,
+        usersModule
     )
 
     override fun onCreate() {

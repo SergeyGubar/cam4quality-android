@@ -15,4 +15,9 @@ abstract class BaseFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(layout, container, false)
     }
+
+    override fun onStop() {
+        super.onStop()
+        compositeDisposable.clear()
+    }
 }
