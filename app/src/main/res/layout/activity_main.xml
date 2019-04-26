@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
-  <!--  <LinearLayout
+    <LinearLayout
         style="@style/Widget.Cam4Quality.Backdrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +17,7 @@
 
         <include layout="@layout/layout_main_backdrop" />
 
-    </LinearLayout>-->
+    </LinearLayout>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -34,21 +34,21 @@
             app:titleTextColor="@color/textColorOnPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/main_nested_scroll"
+    <!--  <androidx.core.widget.NestedScrollView
+          android:id="@+id/main_nested_scroll"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginTop="56dp"
+          app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+    <FrameLayout
+        android:id="@+id/main_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="88dp"
         android:background="@color/productGridBackgroundColor"
-        android:elevation="8dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:elevation="8dp" />
 
-        <FrameLayout
-            android:id="@+id/main_fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="32dp" />
-
-    </androidx.core.widget.NestedScrollView>
+    <!--</androidx.core.widget.NestedScrollView>-->
 
 </FrameLayout>

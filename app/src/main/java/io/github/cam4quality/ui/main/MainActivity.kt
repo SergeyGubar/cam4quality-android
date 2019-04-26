@@ -14,11 +14,11 @@ import io.github.cam4quality.utility.extension.inTransaction
 
 class MainActivity : BaseActivity() {
 
-    private val nestedScrollView by bind<NestedScrollView>(R.id.main_nested_scroll)
     private val toolbar by bind<Toolbar>(R.id.main_toolbar)
+    private val container by bind<FrameLayout>(R.id.main_fragment_container)
 
     private val navClickListener by lazy {
-        NavigationIconClickListener(this, nestedScrollView, AccelerateDecelerateInterpolator())
+        NavigationIconClickListener(this, container, AccelerateDecelerateInterpolator())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +37,7 @@ class MainActivity : BaseActivity() {
     private fun setupToolbar() {
         toolbar.setNavigationOnClickListener(navClickListener)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            nestedScrollView.background = getDrawable(R.drawable.background_shape)
+            container.background = getDrawable(R.drawable.background_shape)
         }
     }
 
