@@ -68,7 +68,8 @@
 
 
     </style>
-    <style name="Dialog.Cam4Quality" parent="Theme.MaterialComponents.Dialog">
+
+    <style name="Dialog.Cam4Quality" parent="Theme.AppCompat.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -80,9 +81,12 @@
         <!-- This is important! Don't forget to set window background -->
         <item name="android:windowBackground">@android:color/white</item>
 
-        <!-- Additionally if you want animations when dialog opening -->
-        <!--<item name="android:windowEnterAnimation">@anim/slide_up</item>-->
-        <!--<item name="android:windowExitAnimation">@anim/slide_down</item>-->
+
+    </style>
+
+    <style name="Cam4Quality.Slide" parent="">   <!-- Additionally if you want animations when dialog opening -->
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
     </style>
 
 </resources>

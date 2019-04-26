@@ -6,6 +6,7 @@ import io.github.cam4quality.utility.extension.mapToResult
 import io.github.cam4quality.utility.extension.workOnBackground
 import io.github.cam4quality.utility.helper.SharedPrefHelper
 import io.reactivex.Single
+import okhttp3.ResponseBody
 
 class FactoriesRepository(
     private val api: FactoriesApi,
@@ -15,5 +16,9 @@ class FactoriesRepository(
         return api.getAllFactories(prefHelper.getBearerToken())
             .mapToResult()
             .workOnBackground()
+    }
+
+    fun addFactory(): Single<ResponseBody> {
+
     }
 }

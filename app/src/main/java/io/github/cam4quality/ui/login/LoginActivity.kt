@@ -30,6 +30,9 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        if (prefHelper.getToken().isNotBlank()) {
+            startMainActivity()
+        }
         setupListeners()
     }
 
@@ -70,7 +73,7 @@ class LoginActivity : BaseActivity() {
                                 savePassword(password)
                                 saveToken(loginResponse?.token)
                             }.also {
-                                startActivity(intentFor<MainActivity>()); finish()
+                                startMainActivity()
                             }
 
                         }, { err ->
@@ -80,5 +83,9 @@ class LoginActivity : BaseActivity() {
                     }
                 )
         )
+    }
+
+    private fun startMainActivity() {
+        startActivity(intentFor<MainActivity>()); finish()
     }
 }

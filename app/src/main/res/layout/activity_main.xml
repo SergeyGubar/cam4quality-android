@@ -29,7 +29,7 @@
             style="@style/Widget.Shrine.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/icon_menu"
+            app:navigationIcon="@drawable/ic_menu"
             app:title="@string/app_name"
             app:titleTextColor="@color/textColorOnPrimary" />
     </com.google.android.material.appbar.AppBarLayout>

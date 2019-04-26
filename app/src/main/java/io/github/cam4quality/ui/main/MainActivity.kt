@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.FrameLayout
 import androidx.appcompat.widget.Toolbar
-import androidx.core.widget.NestedScrollView
 import io.github.cam4quality.BaseActivity
 import io.github.cam4quality.R
 import io.github.cam4quality.ui.factory.FactoriesFragment

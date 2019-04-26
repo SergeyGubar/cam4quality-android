@@ -13,5 +13,9 @@
     <string name="quality_params">Quality Params</string>
     <string name="quality_param_deviations">Quality Deviations</string>
     <string name="add_factory">Add Factory</string>
+    <string name="factory_name">Factory Name</string>
+    <string name="factory_type">Factory Type</string>
+    <string name="factory_address">Factory Address</string>
+    <string name="save">Save</string>
 
 </resources>

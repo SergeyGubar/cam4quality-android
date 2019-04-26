@@ -34,7 +34,7 @@ class SharedPrefHelper(private val context: Context) {
     fun savePassword(password: String) =
         putString(PASSWORD_KEY, password).also { Timber.d("savePassword: password = [$password]") }
 
-    private fun getString(key: String) = context.defaultSharedPreferences.getString(key, "")
+    private fun getString(key: String) = context.defaultSharedPreferences.getString(key, "")!!
     private fun getBoolean(key: String) = context.defaultSharedPreferences.getBoolean(key, false)
 
     private fun putBoolean(key: String, value: Boolean) =
