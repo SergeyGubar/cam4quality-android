@@ -15,3 +15,9 @@ inline fun <reified T : AppCompatActivity> navigate(
 
 val Context.inflater: LayoutInflater
     get() = LayoutInflater.from(this)
+
+fun Context.getDimen(resId: Int) = this.resources.getDimension(resId)
+
+fun Context.getSize(resId: Int) = this.resources.getDimensionPixelSize(resId)
+
+fun Context.getOffset(resId: Int) = this.resources.getDimensionPixelOffset(resId)

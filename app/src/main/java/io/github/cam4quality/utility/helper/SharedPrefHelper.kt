@@ -19,6 +19,8 @@ class SharedPrefHelper(private val context: Context) {
 
     fun getToken() = getString(TOKEN_KEY).also { Timber.d("getToken: result = [$it]") }
 
+    fun getBearerToken() = "Bearer ".plus(getToken())
+
     fun saveToken(token: String?) =
         putString(TOKEN_KEY, token).also { Timber.d("saveToken: token = [$token]") }
 

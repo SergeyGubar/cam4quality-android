@@ -12,5 +12,6 @@
     <string name="users">Users</string>
     <string name="quality_params">Quality Params</string>
     <string name="quality_param_deviations">Quality Deviations</string>
+    <string name="add_factory">Add Factory</string>
 
 </resources>

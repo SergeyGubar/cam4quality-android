@@ -2,8 +2,10 @@ package io.github.cam4quality
 
 import android.app.Application
 import com.google.gson.GsonBuilder
+import io.github.cam4quality.network.api.FactoriesApi
 import io.github.cam4quality.network.api.LoginApi
 import io.github.cam4quality.network.constant.NetworkConstants
+import io.github.cam4quality.network.repository.FactoriesRepository
 import io.github.cam4quality.network.repository.LoginRepository
 import io.github.cam4quality.utility.helper.SharedPrefHelper
 import okhttp3.OkHttpClient
@@ -37,12 +39,24 @@ class App : Application() {
 
     private val loginModule = module {
         single { get<Retrofit>().create(LoginApi::class.java) }
-        single { LoginRepository(get()) }
+        factory { LoginRepository(get()) }
+    }
+
+    private val factoriesModule = module {
+        single { get<Retrofit>().create(FactoriesApi::class.java) }
+        factory { FactoriesRepository(get(), get()) }
     }
 
     private val utilsModule = module {
         single { SharedPrefHelper(get()) }
     }
+
+    private val modules = listOf(
+        networkModule,
+        factoriesModule,
+        loginModule,
+        utilsModule
+    )
 
     override fun onCreate() {
         super.onCreate()
@@ -50,11 +64,7 @@ class App : Application() {
             Timber.plant(Timber.DebugTree())
         }
         startKoin {
-            modules(
-                networkModule,
-                loginModule,
-                utilsModule
-            )
+            modules(this@App.modules)
             androidContext(this@App)
         }
     }
