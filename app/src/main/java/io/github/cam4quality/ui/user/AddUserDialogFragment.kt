@@ -7,8 +7,10 @@ import android.widget.Toolbar
 import com.jaredrummler.materialspinner.MaterialSpinner
 import io.github.cam4quality.R
 import io.github.cam4quality.network.repository.FactoriesRepository
+import io.github.cam4quality.network.repository.UsersRepository
 import io.github.cam4quality.ui.BaseFullScreenDialogFragment
 import io.github.cam4quality.utility.extension.bind
+import io.github.cam4quality.utility.extension.input
 import io.reactivex.rxkotlin.subscribeBy
 import org.jetbrains.anko.support.v4.toast
 import org.koin.android.ext.android.inject
@@ -33,7 +35,10 @@ class AddUserDialogFragment : BaseFullScreenDialogFragment() {
     private val passwordEditText by bind<EditText>(R.id.add_user_password_edit_text)
 
     private var onSave: (() -> Unit)? = null
+    private var factoryId: String? = null
+
     private val factoriesRepository: FactoriesRepository by inject()
+    private val usersRepository: UsersRepository by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,7 +61,18 @@ class AddUserDialogFragment : BaseFullScreenDialogFragment() {
     }
 
     private fun registerUser() {
-        // TODO
+        compositeDisposable.add(usersRepository.register(
+            userNameEditText.input,
+            emailEditText.input,
+            passwordEditText.input,
+            factoryId!!
+        ).subscribeBy(
+            onError = { err -> Timber.w("error: ${err.localizedMessage}") },
+            onSuccess = {
+                onSave?.invoke()
+                dismiss()
+            }
+        ))
     }
 
     private fun loadFactoriesInfo() {
@@ -66,7 +82,9 @@ class AddUserDialogFragment : BaseFullScreenDialogFragment() {
                     response.fold(
                         { result ->
                             Timber.d("success")
-                            initSpinner(result.map { it.id })
+                            val factoriesIds = result.map { it.id }
+                            factoryId = factoriesIds.first()
+                            initSpinner(factoriesIds)
                         },
                         { err ->
                             Timber.w("error: ${err.localizedMessage}")
@@ -79,8 +97,14 @@ class AddUserDialogFragment : BaseFullScreenDialogFragment() {
         )
     }
 
+    @Suppress("ObjectLiteralToLambda")
     private fun initSpinner(data: List<String>) {
         Timber.d("initSpinner: data = [$data]")
         factoriesSpinner.setItems(data)
+        factoriesSpinner.setOnItemSelectedListener(object : MaterialSpinner.OnItemSelectedListener<String> {
+            override fun onItemSelected(view: MaterialSpinner?, position: Int, id: Long, item: String?) {
+                factoryId = item
+            }
+        })
     }
 }
