@@ -7,7 +7,7 @@ import androidx.appcompat.widget.Toolbar
 import io.github.cam4quality.R
 import io.github.cam4quality.network.repository.FactoriesRepository
 import io.github.cam4quality.ui.BaseFullScreenDialogFragment
-import io.github.cam4quality.utility.extension.bind
+import io.github.cam4quality.utility.extension.lazyBind
 import io.github.cam4quality.utility.extension.input
 import io.reactivex.rxkotlin.subscribeBy
 import org.jetbrains.anko.support.v4.toast
@@ -27,10 +27,10 @@ class AddFactoryDialogFragment : BaseFullScreenDialogFragment() {
 
     override val layout: Int = R.layout.dialog_add_factory
 
-    private val toolbar by bind<Toolbar>(R.id.add_factory_toolbar)
-    private val nameEditText by bind<EditText>(R.id.add_factory_name_edit_text)
-    private val typeEditText by bind<EditText>(R.id.add_factory_type_edit_text)
-    private val addressEditText by bind<EditText>(R.id.add_factory_address_edit_text)
+    private val toolbar by lazyBind<Toolbar>(R.id.add_factory_toolbar)
+    private val nameEditText by lazyBind<EditText>(R.id.add_factory_name_edit_text)
+    private val typeEditText by lazyBind<EditText>(R.id.add_factory_type_edit_text)
+    private val addressEditText by lazyBind<EditText>(R.id.add_factory_address_edit_text)
     private val factoriesRepository: FactoriesRepository by inject()
     private var onDataSaved: (() -> Unit)? = null
 

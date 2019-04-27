@@ -2,9 +2,9 @@ package io.github.cam4quality.network.entity.response
 
 import io.github.cam4quality.contract.IdentifiableObject
 
-data class FactoryResponseModel(
-    val address: String,
+data class QualityParamResponseModel(
     override val id: String,
     val name: String,
-    val type: String
-) : IdentifiableObject
+    val value: Double,
+    val paramDeviation: QualityParamDeviationResponseModel
+): IdentifiableObject

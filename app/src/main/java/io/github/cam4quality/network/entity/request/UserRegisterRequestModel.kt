@@ -1,6 +1,6 @@
 package io.github.cam4quality.network.entity.request
 
-data class UserReisterRequestModel(
+data class UserRegisterRequestModel(
     val email: String,
     val userName: String,
     val factoryId: String,

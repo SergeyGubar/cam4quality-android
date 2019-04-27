@@ -22,5 +22,15 @@
     <string name="hint_username">Username</string>
     <string name="add_user">Add User</string>
     <string name="error_loading_factories_data">Error loading factories data!</string>
-
+    <string name="error_loading_quality_params">Error loading quality params</string>
+    <string name="quality_param_info">Quality param value: %1$s \nParam normal value : %2$s \nParam max deviation: %3$s \nParam min deviation: %4$s \nFail percent: %5$s</string>
+    <string name="quality_param_info_title">Quality Param Info</string>
+    <string name="ok">Ok</string>
+    <string name="add_quality_param">Add Param</string>
+    <string name="hint_quality_param_name">Param Name</string>
+    <string name="hint_quality_param_value">Param Value</string>
+    <string name="max_param_deviation">Max Param Deviation:</string>
+    <string name="normal_value">Normal Value</string>
+    <string name="min_param_deviation">Min Param Deviation</string>
+    <string name="statistics">Statistics</string>
 </resources>

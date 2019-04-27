@@ -25,8 +25,8 @@ class FactoriesFragment : BaseFragment() {
 
     override val layout: Int = R.layout.fragment_factories
 
-    private val recycler by bind<RecyclerView>(R.id.factories_recycler)
-    private val fab by bind<FloatingActionButton>(R.id.factories_fab)
+    private val recycler by lazyBind<RecyclerView>(R.id.factories_recycler)
+    private val fab by lazyBind<FloatingActionButton>(R.id.factories_fab)
     private val factoriesAdapter = FactoriesAdapter()
     private val factoriesRepository: FactoriesRepository by inject()
     private val loginRepository: LoginRepository by inject()
@@ -46,12 +46,7 @@ class FactoriesFragment : BaseFragment() {
     }
 
     private fun setupRecycler() {
-        with(recycler) {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(notNullContext)
-            adapter = factoriesAdapter
-            addItemDecoration(SpacesItemDecoration(notNullContext.getSize(R.dimen.padding_standard)))
-        }
+        recycler.defaultSetup(factoriesAdapter)
     }
 
     private fun login() {

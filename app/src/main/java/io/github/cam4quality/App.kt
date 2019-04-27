@@ -2,13 +2,9 @@ package io.github.cam4quality
 
 import android.app.Application
 import com.google.gson.GsonBuilder
-import io.github.cam4quality.network.api.FactoriesApi
-import io.github.cam4quality.network.api.LoginApi
-import io.github.cam4quality.network.api.UsersApi
+import io.github.cam4quality.network.api.*
 import io.github.cam4quality.network.constant.NetworkConstants
-import io.github.cam4quality.network.repository.FactoriesRepository
-import io.github.cam4quality.network.repository.LoginRepository
-import io.github.cam4quality.network.repository.UsersRepository
+import io.github.cam4quality.network.repository.*
 import io.github.cam4quality.utility.helper.SharedPrefHelper
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -58,12 +54,24 @@ class App : Application() {
         factory { UsersRepository(get(), get()) }
     }
 
+    private val qualityParamsModule = module {
+        single { get<Retrofit>().create(QualityParamsApi::class.java) }
+        factory { QualityParamsRepository(get(), get()) }
+    }
+
+    private val qualityParamsDeviationsModule = module {
+        single { get<Retrofit>().create(QualityParamsDeviationsApi::class.java) }
+        factory { QualityParamsDeviationsRepository(get(), get()) }
+    }
+
     private val modules = listOf(
         networkModule,
         factoriesModule,
         loginModule,
         utilsModule,
-        usersModule
+        usersModule,
+        qualityParamsModule,
+        qualityParamsDeviationsModule
     )
 
     override fun onCreate() {

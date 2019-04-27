@@ -23,9 +23,7 @@
     <style name="Widget.Cam4Quality.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">@color/textColorOnPrimary</item>
         <item name="backgroundTint">?attr/colorPrimaryDark</item>
-        <item name="android:stateListAnimator" tools:ignore="NewApi">
-            @animator/shr_next_button_state_list_anim
-        </item>
+        <item name="android:stateListAnimator" tools:ignore="NewApi">@animator/next_button_state_list_anim</item>
     </style>
 
     <style name="Widget.Cam4Quality.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">

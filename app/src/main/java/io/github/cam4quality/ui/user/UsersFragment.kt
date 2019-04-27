@@ -1,20 +1,19 @@
 package io.github.cam4quality.ui.user
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.github.cam4quality.R
+import io.github.cam4quality.network.entity.response.UserResponseModel
 import io.github.cam4quality.network.repository.UsersRepository
 import io.github.cam4quality.ui.BaseFragment
 import io.github.cam4quality.ui.SpacesItemDecoration
-import io.github.cam4quality.ui.factory.FactoriesAdapter
-import io.github.cam4quality.utility.extension.bind
-import io.github.cam4quality.utility.extension.getSize
-import io.github.cam4quality.utility.extension.notNullContext
-import io.github.cam4quality.utility.extension.notNullFragmentManager
+import io.github.cam4quality.utility.extension.*
 import io.reactivex.rxkotlin.subscribeBy
+import org.jetbrains.anko.support.v4.toast
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
@@ -27,15 +26,15 @@ class UsersFragment : BaseFragment() {
     override val layout: Int = R.layout.fragment_users
 
     private val usersRepository: UsersRepository by inject()
-    private val recycler by bind<RecyclerView>(R.id.users_recycler)
-    private val fab by bind<FloatingActionButton>(R.id.users_fab)
-    private val usersAdapter = UsersAdapter()
+    private val recycler by lazyBind<RecyclerView>(R.id.users_recycler)
+    private val fab by lazyBind<FloatingActionButton>(R.id.users_fab)
+    private val usersAdapter = UsersAdapter(::onUserClick)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
         setupRecycler()
-        loadUsersData()
+        handler.postDelayed({ loadUsersData() }, 500)
     }
 
     private fun setupListeners() {
@@ -55,9 +54,7 @@ class UsersFragment : BaseFragment() {
         compositeDisposable.add(
             usersRepository.getAllUsers()
                 .subscribeBy(
-                    onError = { err ->
-                        Timber.w("error: ${err.localizedMessage}")
-                    },
+                    onError = { err -> Timber.w("error: ${err.localizedMessage}") },
                     onSuccess = { response ->
                         response.fold(
                             { result ->
@@ -71,6 +68,13 @@ class UsersFragment : BaseFragment() {
                     }
                 )
         )
+    }
 
+    private fun onUserClick(user: UserResponseModel) {
+        usersRepository.removeUser(user.id)
+            .subscribeBy(
+                onError = { err -> Timber.d("error: $err").also { toast("Error deleting user!") } },
+                onSuccess = { usersAdapter.removeItem(user.id) }
+            ).addToContainer(compositeDisposable)
     }
 }

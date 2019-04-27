@@ -8,7 +8,7 @@ import io.github.cam4quality.R
 import io.github.cam4quality.network.repository.LoginRepository
 import io.github.cam4quality.ui.main.MainActivity
 import io.github.cam4quality.utility.extension.addSimpleTextChangedListener
-import io.github.cam4quality.utility.extension.bind
+import io.github.cam4quality.utility.extension.lazyBind
 import io.github.cam4quality.utility.extension.hideError
 import io.github.cam4quality.utility.extension.input
 import io.github.cam4quality.utility.helper.SharedPrefHelper
@@ -23,9 +23,9 @@ class LoginActivity : BaseActivity() {
 
     private val loginRepository: LoginRepository by inject()
     private val prefHelper: SharedPrefHelper by inject()
-    private val nextButton by bind<Button>(R.id.login_next_button)
-    private val emailEditText by bind<EditText>(R.id.login_email_edit_text)
-    private val passwordEditText by bind<EditText>(R.id.login_password_edit_text)
+    private val nextButton by lazyBind<Button>(R.id.login_next_button)
+    private val emailEditText by lazyBind<EditText>(R.id.login_email_edit_text)
+    private val passwordEditText by lazyBind<EditText>(R.id.login_password_edit_text)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
