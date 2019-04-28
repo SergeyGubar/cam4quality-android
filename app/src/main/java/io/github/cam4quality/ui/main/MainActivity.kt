@@ -18,6 +18,7 @@ import io.github.cam4quality.ui.detail.DetailsFragment
 import io.github.cam4quality.ui.factory.FactoriesFragment
 import io.github.cam4quality.ui.qualityparam.QualityParamsFragment
 import io.github.cam4quality.ui.setting.SettingsFragment
+import io.github.cam4quality.ui.statistic.FactoriesStatisticFragment
 import io.github.cam4quality.ui.user.UsersFragment
 import io.github.cam4quality.utility.extension.inTransaction
 import io.github.cam4quality.utility.extension.lazyBind
@@ -28,10 +29,21 @@ class MainActivity : BaseLocalizedActivity(), View.OnClickListener {
     private val usersButton by lazyBind<Button>(R.id.main_users_button)
     private val factoriesButton by lazyBind<Button>(R.id.main_factories_button)
     private val detailsButton by lazyBind<Button>(R.id.main_details_button)
+    private val statisticsButton by lazyBind<Button>(R.id.main_statistics_button)
     private val qualityParamsButton by lazyBind<Button>(R.id.main_quality_params_button)
     private val settingsButton by lazyBind<Button>(R.id.main_settings_button)
     private val container by lazyBind<FrameLayout>(R.id.main_fragment_container)
 
+    // At this moment, i started to regret implementing backdrop navigation
+    private val backDropButtons
+        get() = listOf(
+            usersButton,
+            factoriesButton,
+            detailsButton,
+            statisticsButton,
+            qualityParamsButton,
+            settingsButton
+        )
 
     private lateinit var receiver: BroadcastReceiver
 
@@ -71,6 +83,7 @@ class MainActivity : BaseLocalizedActivity(), View.OnClickListener {
             R.id.main_quality_params_button -> QualityParamsFragment.newInstance()
             R.id.main_settings_button -> SettingsFragment.newInstance()
             R.id.main_details_button -> DetailsFragment.newInstance()
+            R.id.main_statistics_button -> FactoriesStatisticFragment.newInstance()
             else -> throw IllegalStateException("Handling $view click is not supported!")
         }
         showFragment(fragment)
@@ -88,11 +101,9 @@ class MainActivity : BaseLocalizedActivity(), View.OnClickListener {
 
     private fun setupListeners() {
         // At this moment, i started to regret implementing backdrop navigation
-        usersButton.setOnClickListener(this)
-        factoriesButton.setOnClickListener(this)
-        qualityParamsButton.setOnClickListener(this)
-        settingsButton.setOnClickListener(this)
-        detailsButton.setOnClickListener(this)
+        backDropButtons.forEach {
+            it.setOnClickListener(this)
+        }
     }
 
     private fun showFragment(fragment: Fragment) {

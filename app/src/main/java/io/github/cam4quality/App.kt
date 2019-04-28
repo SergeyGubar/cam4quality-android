@@ -69,6 +69,11 @@ class App : Application() {
         factory { DetailsRepository(get(), get()) }
     }
 
+    private val statisticsModule = module {
+        single { get<Retrofit>().create(FactoriesStatisticsApi::class.java) }
+        factory { FactoriesStatisticsRepository(get(), get()) }
+    }
+
     private val modules = listOf(
         networkModule,
         factoriesModule,
@@ -77,7 +82,8 @@ class App : Application() {
         usersModule,
         qualityParamsModule,
         qualityParamsDeviationsModule,
-        detailsModule
+        detailsModule,
+        statisticsModule
     )
 
     override fun onCreate() {
