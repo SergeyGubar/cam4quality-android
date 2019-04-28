@@ -17,5 +17,8 @@ interface UsersApi {
     fun register(@Body userRegisterModel: UserRegisterRequestModel): Single<ResponseBody>
 
     @HTTP(method = "DELETE", path = "/api/User/removeUser", hasBody = true)
-    fun removeUser(@Header(NetworkConstants.HEADER_AUTHORIZATION) token: String, @Body removeModel: RemoveRequestModel): Single<ResponseBody>
+    fun removeUser(
+        @Header(NetworkConstants.HEADER_AUTHORIZATION) token: String,
+        @Body removeModel: RemoveRequestModel
+    ): Single<ResponseBody>
 }

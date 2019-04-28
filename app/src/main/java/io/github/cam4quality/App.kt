@@ -64,6 +64,11 @@ class App : Application() {
         factory { QualityParamsDeviationsRepository(get(), get()) }
     }
 
+    private val detailsModule = module {
+        single { get<Retrofit>().create(DetailsApi::class.java) }
+        factory { DetailsRepository(get(), get()) }
+    }
+
     private val modules = listOf(
         networkModule,
         factoriesModule,
@@ -71,7 +76,8 @@ class App : Application() {
         utilsModule,
         usersModule,
         qualityParamsModule,
-        qualityParamsDeviationsModule
+        qualityParamsDeviationsModule,
+        detailsModule
     )
 
     override fun onCreate() {

@@ -74,7 +74,9 @@ class UsersFragment : BaseFragment() {
         usersRepository.removeUser(user.id)
             .subscribeBy(
                 onError = { err -> Timber.d("error: $err").also { toast("Error deleting user!") } },
-                onSuccess = { usersAdapter.removeItem(user.id) }
+                onSuccess = {
+                    usersAdapter.removeItem(user.id).also { toast(getString(R.string.deleted_user, user.userName)) }
+                }
             ).addToContainer(compositeDisposable)
     }
 }

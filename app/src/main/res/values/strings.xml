@@ -33,4 +33,13 @@
     <string name="normal_value">Normal Value</string>
     <string name="min_param_deviation">Min Param Deviation</string>
     <string name="statistics">Statistics</string>
+    <string name="deleted_user">Deleted user %1$s</string>
+    <string name="eng">ENG</string>
+    <string name="ua">UKRAINIAN</string>
+    <string name="date">Date:</string>
+    <string name="detail_factory">Factory:</string>
+    <string name="detail_is_critical">Is Critical:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
 </resources>

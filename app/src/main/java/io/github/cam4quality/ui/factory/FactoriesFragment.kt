@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.github.cam4quality.R
+import io.github.cam4quality.network.entity.response.FactoryResponseModel
 import io.github.cam4quality.network.repository.FactoriesRepository
 import io.github.cam4quality.network.repository.LoginRepository
 import io.github.cam4quality.ui.BaseFragment
@@ -27,7 +28,7 @@ class FactoriesFragment : BaseFragment() {
 
     private val recycler by lazyBind<RecyclerView>(R.id.factories_recycler)
     private val fab by lazyBind<FloatingActionButton>(R.id.factories_fab)
-    private val factoriesAdapter = FactoriesAdapter()
+    private val factoriesAdapter = FactoriesAdapter(::onFactoryClick)
     private val factoriesRepository: FactoriesRepository by inject()
     private val loginRepository: LoginRepository by inject()
     private val prefHelper: SharedPrefHelper by inject()
@@ -53,34 +54,41 @@ class FactoriesFragment : BaseFragment() {
         val login = prefHelper.getLogin()
         val password = prefHelper.getPassword()
         val loginObservable = loginRepository.login(login, password)
-        compositeDisposable.addAll(
-            loginObservable.subscribeBy(
-                onSuccess = { response ->
-                    response.onSuccess { result ->
-                        result.let {
-                            prefHelper.saveToken(it.token)
-                            loadFactoriesData()
-                        }
+        loginObservable.subscribeBy(
+            onSuccess = { response ->
+                response.onSuccess { result ->
+                    result.let {
+                        prefHelper.saveToken(it.token)
+                        loadFactoriesData()
                     }
-                },
-                onError = { err -> toast("error loading factories ${err.localizedMessage}") }
-            )
-        )
+                }
+            },
+            onError = { err -> toast("error loading factories ${err.localizedMessage}") }
+        ).addToContainer(compositeDisposable)
     }
 
     private fun loadFactoriesData() {
         val factoriesObservable = factoriesRepository.getAllFactories()
-        compositeDisposable.addAll(
-            factoriesObservable
-                .subscribeBy(
-                    onSuccess = { response ->
-                        response.onSuccess { result ->
-                            Timber.d("result: $result")
-                            result?.let { factoriesAdapter.swapData(it) }
-                        }
-                    },
-                    onError = { toast("Error loading factoriesData ${it.localizedMessage}") }
-                )
-        )
+        factoriesObservable
+            .subscribeBy(
+                onSuccess = { response ->
+                    response.onSuccess { result ->
+                        Timber.d("result: $result")
+                        result.let { factoriesAdapter.swapData(it) }
+                    }
+                },
+                onError = { toast("Error loading factoriesData ${it.localizedMessage}") }
+            ).addToContainer(compositeDisposable)
+    }
+
+    private fun onFactoryClick(factory: FactoryResponseModel) {
+        factoriesRepository.removeFactory(factory.id)
+            .subscribeBy(
+                onError = { Timber.w("error: ${it.localizedMessage}").also { Timber.d("Error removing factory!") } },
+                onSuccess = {
+                    Timber.d("success").also { toast("${factory.name} removed!") }
+                    factoriesAdapter.removeItem(factory.id)
+                }
+            ).addToContainer(compositeDisposable)
     }
 }

@@ -26,7 +26,7 @@ class QualityParamsFragment : BaseFragment() {
 
     private val recycler by lazyBind<RecyclerView>(R.id.quality_params_recycler)
     private val fab by lazyBind<FloatingActionButton>(R.id.quality_params_fab)
-    private val qualityParamsAdapter = QualityParamsAdapter(::onQualityParamClick)
+    private val qualityParamsAdapter = QualityParamsAdapter(::onQualityParamClick, ::onQualityParamLongClick)
     private val qualityParamsRepository: QualityParamsRepository by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -76,5 +76,15 @@ class QualityParamsFragment : BaseFragment() {
                 )
             )
         }
+    }
+
+    private fun onQualityParamLongClick(qualityParam: QualityParamResponseModel) {
+        qualityParamsRepository.removeParam(qualityParam.id).subscribeBy(
+            onError = { Timber.w("error: ${it.localizedMessage}").also { toast("Error deleting param!") } },
+            onSuccess = {
+                Timber.d("success").also { toast("${qualityParam.name} deleted!") }
+                qualityParamsAdapter.removeItem(qualityParam.id)
+            }
+        ).addToContainer(compositeDisposable)
     }
 }

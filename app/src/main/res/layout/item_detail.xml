@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="290dp">
+
+    <ImageView
+        android:id="@+id/item_detail_image"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/shape_solid_circle_red" />
+
+    <TextView
+        android:id="@+id/item_detail_date_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toEndOf="@+id/item_detail_date"
+        app:layout_constraintTop_toTopOf="@+id/item_detail_date"
+        tools:text="18/09/1998" />
+
+    <TextView
+        android:id="@+id/item_detail_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_detail_image" />
+
+    <TextView
+        android:id="@+id/item_detail_factory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/detail_factory"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="@+id/item_detail_date"
+        app:layout_constraintTop_toBottomOf="@+id/item_detail_date" />
+
+    <TextView
+        android:id="@+id/item_detail_factory_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toBottomOf="@+id/item_detail_factory"
+        app:layout_constraintStart_toEndOf="@+id/item_detail_factory"
+        app:layout_constraintTop_toTopOf="@+id/item_detail_factory"
+        tools:text="Test factory name" />
+
+    <TextView
+        android:id="@+id/item_detail_is_critical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/detail_is_critical"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintStart_toStartOf="@+id/item_detail_factory"
+        app:layout_constraintTop_toBottomOf="@+id/item_detail_factory" />
+
+    <TextView
+        android:id="@+id/item_detail_is_critical_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toBottomOf="@+id/item_detail_is_critical"
+        app:layout_constraintStart_toEndOf="@+id/item_detail_is_critical"
+        app:layout_constraintTop_toTopOf="@+id/item_detail_is_critical"
+        tools:text="True" />
+</androidx.constraintlayout.widget.ConstraintLayout>

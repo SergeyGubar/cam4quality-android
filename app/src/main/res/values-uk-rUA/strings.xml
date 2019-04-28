@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cam4Quality</string>
+    <string name="no_factory">тігідік</string>
+    <string name="detail_factory">Factory:</string>
+    <string name="detail_is_critical">Is Critical?</string>
+</resources>

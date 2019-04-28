@@ -8,12 +8,16 @@ import io.github.cam4quality.R
 import io.github.cam4quality.network.entity.response.QualityParamResponseModel
 import io.github.cam4quality.ui.BaseAdapter
 import io.github.cam4quality.ui.BaseViewHolder
+import io.github.cam4quality.utility.`typealias`.Callback
 import io.github.cam4quality.utility.extension.inflate
 import io.github.cam4quality.utility.extension.lazyBind
 import io.github.cam4quality.utility.extension.makeVisible
 import io.github.cam4quality.utility.validator.QualityValidator
 
-class QualityParamsAdapter(private val onQualityParamClick: (QualityParamResponseModel) -> Unit) :
+class QualityParamsAdapter(
+    private val onQualityParamClick: Callback<QualityParamResponseModel>,
+    private val onQualityParamLongClick: Callback<QualityParamResponseModel>
+) :
     BaseAdapter<QualityParamResponseModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<QualityParamResponseModel> =
@@ -28,6 +32,7 @@ class QualityParamsAdapter(private val onQualityParamClick: (QualityParamRespons
 
         override fun bind(item: QualityParamResponseModel) {
             itemView.setOnClickListener { onQualityParamClick(item) }
+            itemView.setOnLongClickListener { onQualityParamLongClick(item); false }
             with(item) {
                 idTextView.text = id
                 nameTextView.text = name
