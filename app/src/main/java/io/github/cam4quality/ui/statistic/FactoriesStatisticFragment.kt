@@ -5,7 +5,9 @@ import android.view.View
 import android.widget.Button
 import io.github.cam4quality.R
 import io.github.cam4quality.ui.BaseFragment
+import io.github.cam4quality.ui.statistic.interval.FactoryStatisticInIntervalDialogFragment
 import io.github.cam4quality.utility.extension.lazyBind
+import io.github.cam4quality.utility.extension.notNullFragmentManager
 
 class FactoriesStatisticFragment: BaseFragment() {
 
@@ -27,6 +29,6 @@ class FactoriesStatisticFragment: BaseFragment() {
     }
 
     private fun setupListeners() {
-
+        factoryIntervalButton.setOnClickListener { FactoryStatisticInIntervalDialogFragment.newInstance().show(notNullFragmentManager, null) }
     }
 }

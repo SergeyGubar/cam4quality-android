@@ -30,13 +30,6 @@
         <item name="android:textColor">@color/textColorOnPrimary</item>
     </style>
 
-    <style name="Widget.Cam4Quality.Toolbar" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">?attr/colorAccent</item>
-        <item name="android:theme">@style/Theme.Cam4Quality</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="titleTextAppearance">@style/TextAppearance.Cam4Quality.Toolbar</item>
-    </style>
-
     <style name="TextAppearance.Cam4Quality.Toolbar" parent="TextAppearance.MaterialComponents.Button">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/textColorOnPrimary</item>

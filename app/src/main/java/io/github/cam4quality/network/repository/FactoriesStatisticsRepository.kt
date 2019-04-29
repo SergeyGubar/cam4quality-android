@@ -44,7 +44,7 @@ class FactoriesStatisticsRepository(
         start: String,
         end: String,
         factoryId: String
-    ): Single<Result<List<FactoryStatisticInIntervalResponseModel>>> {
+    ): Single<Result<FactoryStatisticInIntervalResponseModel>> {
         Timber.d("getFactoryStatisticsInInterval")
         return api.getFactoryStatisticsInInterval(
             prefHelper.getBearerToken(),

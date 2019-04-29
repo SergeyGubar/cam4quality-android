@@ -46,5 +46,11 @@
     <string name="fail_daily">Fail Daily</string>
     <string name="factory_all_time">Factory All Time</string>
     <string name="time_interval">Time Interval</string>
+    <string name="generate">Generate</string>
+    <string name="end_date">End Date</string>
+    <string name="start_date">Start Date</string>
+    <string name="all_details_count">All Details Count</string>
+    <string name="failed_details">Failed Details</string>
+    <string name="failed_details_percent">Failed Percent</string>
 
 </resources>

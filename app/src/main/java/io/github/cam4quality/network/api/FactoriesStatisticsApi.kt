@@ -39,6 +39,6 @@ interface FactoriesStatisticsApi {
         @Query("start") start: String,
         @Query("end") end: String,
         @Query("factoryId") factoryId: String
-    ): Single<Response<List<FactoryStatisticInIntervalResponseModel>>>
+    ): Single<Response<FactoryStatisticInIntervalResponseModel>>
 
 }
