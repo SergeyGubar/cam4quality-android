@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import io.github.cam4quality.R
 import io.github.cam4quality.network.entity.response.UserResponseModel
-import io.github.cam4quality.ui.BaseAdapter
+import io.github.cam4quality.ui.BaseIdentifiableAdapter
 import io.github.cam4quality.ui.BaseViewHolder
 import io.github.cam4quality.utility.extension.lazyBind
 import io.github.cam4quality.utility.extension.inflater
 
 class UsersAdapter(
     private val onUserClick: (UserResponseModel) -> Unit
-) : BaseAdapter<UserResponseModel>() {
+) : BaseIdentifiableAdapter<UserResponseModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<UserResponseModel> {
         return UserViewHolder(parent.context.inflater.inflate(R.layout.item_user, parent, false))

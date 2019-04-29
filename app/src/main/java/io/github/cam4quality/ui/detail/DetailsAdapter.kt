@@ -8,12 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import io.github.cam4quality.R
 import io.github.cam4quality.network.entity.response.DetailResponseModel
-import io.github.cam4quality.ui.BaseAdapter
+import io.github.cam4quality.ui.BaseIdentifiableAdapter
 import io.github.cam4quality.ui.BaseViewHolder
 import io.github.cam4quality.utility.extension.inflate
 import io.github.cam4quality.utility.extension.lazyBind
 
-class DetailsAdapter : BaseAdapter<DetailResponseModel>() {
+class DetailsAdapter : BaseIdentifiableAdapter<DetailResponseModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<DetailResponseModel> =
         DetailViewHolder(parent.inflate(R.layout.item_detail))

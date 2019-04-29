@@ -6,7 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import io.github.cam4quality.R
 import io.github.cam4quality.network.entity.response.QualityParamResponseModel
-import io.github.cam4quality.ui.BaseAdapter
+import io.github.cam4quality.ui.BaseIdentifiableAdapter
 import io.github.cam4quality.ui.BaseViewHolder
 import io.github.cam4quality.utility.`typealias`.Callback
 import io.github.cam4quality.utility.extension.inflate
@@ -18,7 +18,7 @@ class QualityParamsAdapter(
     private val onQualityParamClick: Callback<QualityParamResponseModel>,
     private val onQualityParamLongClick: Callback<QualityParamResponseModel>
 ) :
-    BaseAdapter<QualityParamResponseModel>() {
+    BaseIdentifiableAdapter<QualityParamResponseModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<QualityParamResponseModel> =
         QualityParamViewHolder(parent.inflate(R.layout.item_quality_param))

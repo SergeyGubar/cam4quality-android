@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/statistics_factories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/factories_statistics" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/statistics_most_dangerous"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/most_dangerous" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/statistics_fail_daily"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fail_daily" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/statistics_factory_all_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/factory_all_time" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/statistics_in_interval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/time_interval" />
+
 
 </LinearLayout>

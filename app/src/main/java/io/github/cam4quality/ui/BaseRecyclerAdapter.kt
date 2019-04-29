@@ -1,9 +1,8 @@
 package io.github.cam4quality.ui
 
 import androidx.recyclerview.widget.RecyclerView
-import io.github.cam4quality.contract.IdentifiableObject
 
-abstract class BaseAdapter<T : IdentifiableObject>(private val items: MutableList<T> = mutableListOf()) :
+abstract class BaseRecyclerAdapter<T>(private val items: MutableList<T> = mutableListOf()) :
     RecyclerView.Adapter<BaseViewHolder<T>>() {
 
     override fun getItemCount(): Int = items.size
@@ -16,11 +15,5 @@ abstract class BaseAdapter<T : IdentifiableObject>(private val items: MutableLis
         items.clear()
         items.addAll(newData)
         notifyDataSetChanged()
-    }
-
-    fun removeItem(id: String) {
-        val position = items.indexOfFirst { it.id == id }
-        items.removeAt(position)
-        notifyItemRemoved(position)
     }
 }

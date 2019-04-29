@@ -41,5 +41,10 @@
     <string name="detail_is_critical">Is Critical:</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="factories_statistics">Factories Statistics</string>
+    <string name="most_dangerous">Most Dangerous</string>
+    <string name="fail_daily">Fail Daily</string>
+    <string name="factory_all_time">Factory All Time</string>
+    <string name="time_interval">Time Interval</string>
 
 </resources>

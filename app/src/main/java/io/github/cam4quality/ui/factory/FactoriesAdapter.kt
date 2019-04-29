@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import io.github.cam4quality.R
 import io.github.cam4quality.network.entity.response.FactoryResponseModel
-import io.github.cam4quality.ui.BaseAdapter
+import io.github.cam4quality.ui.BaseIdentifiableAdapter
 import io.github.cam4quality.ui.BaseViewHolder
 import io.github.cam4quality.utility.`typealias`.Callback
 import io.github.cam4quality.utility.extension.lazyBind
 import io.github.cam4quality.utility.extension.inflater
 
 class FactoriesAdapter(private val onFactoryClick: Callback<FactoryResponseModel>) :
-    BaseAdapter<FactoryResponseModel>() {
+    BaseIdentifiableAdapter<FactoryResponseModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<FactoryResponseModel> =
         FactoryViewHolder(parent.context.inflater.inflate(R.layout.item_factory, parent, false))
