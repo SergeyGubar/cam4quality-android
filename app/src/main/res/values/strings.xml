@@ -52,5 +52,9 @@
     <string name="all_details_count">All Details Count</string>
     <string name="failed_details">Failed Details</string>
     <string name="failed_details_percent">Failed Percent</string>
+    <string name="add_quality_param_deviation">Add Deviation</string>
+    <string name="hint_max_value_deviation">Max Deviation (%)</string>
+    <string name="hint_min_value_deviation">Min Value Deviation (%)</string>
+    <string name="hint_description">Description</string>
 
 </resources>

@@ -30,6 +30,7 @@
         android:text="@string/quality_params" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/main_quality_params_deviations_button"
         style="@style/Widget.Cam4Quality.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

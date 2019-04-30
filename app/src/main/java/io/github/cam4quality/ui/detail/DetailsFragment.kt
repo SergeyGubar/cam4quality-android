@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import io.github.cam4quality.R
+import io.github.cam4quality.network.entity.response.DetailResponseModel
 import io.github.cam4quality.network.repository.DetailsRepository
 import io.github.cam4quality.ui.BaseFragment
 import io.github.cam4quality.utility.extension.addToContainer
@@ -22,7 +23,7 @@ class DetailsFragment : BaseFragment() {
 
     override val layout: Int = R.layout.fragment_details
 
-    private val adapter = DetailsAdapter()
+    private val adapter = DetailsAdapter(::onLongDetailClick)
     private val repository: DetailsRepository by inject()
     private val recycler by lazyBind<RecyclerView>(R.id.details_recycler)
 
@@ -50,5 +51,18 @@ class DetailsFragment : BaseFragment() {
                     )
                 }
             ).addToContainer(compositeDisposable)
+    }
+
+    private fun onLongDetailClick(detail: DetailResponseModel) {
+        repository.removeDetail(detail.id)
+            .subscribeBy(
+                onError = { Timber.d("error: ${it.localizedMessage}".also { toast("Error removing detail!") }) },
+                onSuccess = {
+                    Timber.d("success $it")
+                    adapter.removeItem(detail.id)
+                    toast("Removed ${detail.id}")
+                }
+            )
+            .addToContainer(compositeDisposable)
     }
 }

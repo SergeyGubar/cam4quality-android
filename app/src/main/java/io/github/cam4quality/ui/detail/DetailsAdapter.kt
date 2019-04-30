@@ -10,10 +10,13 @@ import io.github.cam4quality.R
 import io.github.cam4quality.network.entity.response.DetailResponseModel
 import io.github.cam4quality.ui.BaseIdentifiableAdapter
 import io.github.cam4quality.ui.BaseViewHolder
+import io.github.cam4quality.utility.`typealias`.Callback
 import io.github.cam4quality.utility.extension.inflate
 import io.github.cam4quality.utility.extension.lazyBind
 
-class DetailsAdapter : BaseIdentifiableAdapter<DetailResponseModel>() {
+class DetailsAdapter(
+    private val onLongItemClick: Callback<DetailResponseModel>
+) : BaseIdentifiableAdapter<DetailResponseModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<DetailResponseModel> =
         DetailViewHolder(parent.inflate(R.layout.item_detail))
@@ -27,13 +30,19 @@ class DetailsAdapter : BaseIdentifiableAdapter<DetailResponseModel>() {
 
         override fun bind(item: DetailResponseModel) {
             with(item) {
+                itemView.setOnLongClickListener {
+                    onLongItemClick(item)
+                    false
+                }
                 // I'll burn in hell for doing this on main thread
                 val decodedString = Base64.decode(this.photo.content, Base64.DEFAULT)
                 val decodedBitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
                 detailImageView.setImageBitmap(decodedBitmap)
                 detailDateTextView.text = dateTime
                 detailFactoryTextView.text = factory.name
-                detailIsCriticalTextView.text = if (isCritical) itemView.context.getString(R.string.yes) else itemView.context.getString(R.string.no)
+                // And for logic in view holder too..
+                detailIsCriticalTextView.text =
+                    if (isCritical) itemView.context.getString(R.string.yes) else itemView.context.getString(R.string.no)
             }
         }
     }
