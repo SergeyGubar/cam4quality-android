@@ -56,14 +56,13 @@ class MainActivity : BaseLocalizedActivity(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-        // TODO : Implement change locale?
         receiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
                 this@MainActivity.recreate()
             }
         }
 
-        registerReceiver(receiver, IntentFilter("asd"))
+        registerReceiver(receiver, IntentFilter(SettingsFragment.ACTION_LOCALE_CHANGED))
     }
 
     override fun onPause() {

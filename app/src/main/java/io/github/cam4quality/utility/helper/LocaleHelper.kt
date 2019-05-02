@@ -9,7 +9,7 @@ import java.util.*
 object LocaleHelper {
 
     const val LOCALE_LANG_ENG = "en"
-    const val LOCALE_LANG_UA = "uk_rUA"
+    const val LOCALE_LANG_UA = "uk-UA"
 
     fun changeApplicationLocale(activity: Activity, locale: String) {
         val applicationConfiguration = setCurrentActivityLanguage(activity, locale)

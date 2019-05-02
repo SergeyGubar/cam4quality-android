@@ -20,7 +20,7 @@ abstract class BaseLocalizedActivity : BaseActivity() {
 
     private fun updateBaseContextLocale(context: Context): Context {
         val language = prefHelper.getLanguage()
-        val locale = Locale(language)
+        val locale = Locale.forLanguageTag(language)
         Locale.setDefault(locale)
         // Not deprecated method doesn't work. Probably, will be used later
         /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
