@@ -13,7 +13,7 @@ import io.github.cam4quality.utility.extension.lazyBind
 import io.github.cam4quality.utility.extension.toFixedNumberString
 
 class QualityParamsDeviationsAdapter(
-    private val deviationClickCallback: Callback<QualityParamDeviationResponseModel>
+    private val deviationLongClickCallback: Callback<QualityParamDeviationResponseModel>
 ) : BaseIdentifiableAdapter<QualityParamDeviationResponseModel>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -30,7 +30,7 @@ class QualityParamsDeviationsAdapter(
         private val maxDeviationTextView by lazyBind<TextView>(R.id.item_quality_param_deviation_max_deviation)
 
         override fun bind(item: QualityParamDeviationResponseModel) {
-            itemView.setOnLongClickListener { deviationClickCallback(item); false }
+            itemView.setOnLongClickListener { deviationLongClickCallback(item); false }
             with(item) {
                 descriptionTextView.text = description
                 normalValueTextView.text = normalValue.toFixedNumberString(4)

@@ -11,7 +11,7 @@ import io.github.cam4quality.utility.`typealias`.Callback
 import io.github.cam4quality.utility.extension.lazyBind
 import io.github.cam4quality.utility.extension.inflater
 
-class FactoriesAdapter(private val onFactoryClick: Callback<FactoryResponseModel>) :
+class FactoriesAdapter(private val onFactoryLongClick: Callback<FactoryResponseModel>) :
     BaseIdentifiableAdapter<FactoryResponseModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<FactoryResponseModel> =
@@ -25,7 +25,7 @@ class FactoriesAdapter(private val onFactoryClick: Callback<FactoryResponseModel
         private val addressTextView by lazyBind<TextView>(R.id.item_factory_address)
 
         override fun bind(item: FactoryResponseModel) {
-            itemView.setOnClickListener { onFactoryClick(item) }
+            itemView.setOnLongClickListener { onFactoryLongClick(item); false }
             with(item) {
                 idTextView.text = id
                 nameTextView.text = name

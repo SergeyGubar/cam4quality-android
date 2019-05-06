@@ -11,7 +11,7 @@ import io.github.cam4quality.utility.extension.lazyBind
 import io.github.cam4quality.utility.extension.inflater
 
 class UsersAdapter(
-    private val onUserClick: (UserResponseModel) -> Unit
+    private val onUserLongClick: (UserResponseModel) -> Unit
 ) : BaseIdentifiableAdapter<UserResponseModel>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<UserResponseModel> {
@@ -26,7 +26,7 @@ class UsersAdapter(
         private val factoryNameTextView by lazyBind<TextView>(R.id.item_user_factory_name)
 
         override fun bind(item: UserResponseModel) {
-            itemView.setOnClickListener { onUserClick(item) }
+            itemView.setOnLongClickListener { onUserLongClick(item); false }
             with(item) {
                 idTextView.text = id
                 nameTextView.text = userName
